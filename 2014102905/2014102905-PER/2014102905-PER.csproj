@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A451CC31-54CB-4351-8342-43D2788A548F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>_2014102905_PER</RootNamespace>
+    <AssemblyName>2014102905-PER</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityTypeConfiguration\BusConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\ClienteConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\EmpleadoConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\LugarViajeConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\ServicioConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\TipoComprobanteConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\TipoLugarConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\TipoPagoConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\TipoTripulacionConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\TipoViajeConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\VentaConfiguration.cs" />
+    <Compile Include="Migrations\201705151650035_InitialModel.cs" />
+    <Compile Include="Migrations\201705151650035_InitialModel.Designer.cs">
+      <DependentUpon>201705151650035_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repositories\AdministrativoRepository.cs" />
+    <Compile Include="Repositories\BusRepository.cs" />
+    <Compile Include="Repositories\ClienteRepository.cs" />
+    <Compile Include="Repositories\EmpleadoRepository.cs" />
+    <Compile Include="Repositories\EncomiendaRepository.cs" />
+    <Compile Include="Repositories\LugarViajeRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\ServicioRepository.cs" />
+    <Compile Include="Repositories\TipoComprobanteRepository.cs" />
+    <Compile Include="Repositories\TipoLugarRepository.cs" />
+    <Compile Include="Repositories\TipoPagoRepository.cs" />
+    <Compile Include="Repositories\TipoTripulacionRepository.cs" />
+    <Compile Include="Repositories\TipoViajeRepository.cs" />
+    <Compile Include="Repositories\TransporteRepository.cs" />
+    <Compile Include="Repositories\TripulacionRepository.cs" />
+    <Compile Include="Repositories\UnityOfWork.cs" />
+    <Compile Include="Repositories\VentasRepository.cs" />
+    <Compile Include="TransporteDbContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\2014102905-ENT\2014102905-ENT.csproj">
+      <Project>{ca4e85ec-0f08-4871-acf2-ecba4c53aefa}</Project>
+      <Name>2014102905-ENT</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705151650035_InitialModel.resx">
+      <DependentUpon>201705151650035_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
