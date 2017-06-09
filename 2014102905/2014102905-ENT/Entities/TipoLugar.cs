@@ -11,7 +11,12 @@ namespace _2014102905_ENT.Entities
         public int TipoLugarId { get; set; }
         public string NombreTipo { get; set; }
 
-        public int LugarViajeId { get; set; }
-        public LugarViaje LugarViaje { get; set; }
+        public virtual int LugarViajeId { get; set; }
+        public virtual LugarViaje LugarViaje { get; set; }
+
+        public TipoLugar()
+        {
+
+        }
     }
 }

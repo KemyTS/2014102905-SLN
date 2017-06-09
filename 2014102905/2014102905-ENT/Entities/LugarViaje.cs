@@ -11,20 +11,15 @@ namespace _2014102905_ENT.Entities
         public int LugarViajeId { get; set; }
         public string NombreLugar { get; set; }
 
-        public int TransporteId { get; set; }
-        public Transporte Transporte { get; set; }
+        public virtual int ServicioId { get; set; }
+        public virtual Servicio Servicio { get; set; }
 
-        public int EncomiendaId { get; set; }
-        public Encomienda Encomienda { get; set; }
-
-        public int BusId { get; set; }
-        public Bus Bus { get; set; }
-
-        public ICollection<TipoLugar> TipoLugar { get; set; }
+        public virtual ICollection<TipoLugar> TipoLugar { get; set; }
 
         public LugarViaje()
         {
             TipoLugar = new List<TipoLugar>();
         }
+
     }
 }

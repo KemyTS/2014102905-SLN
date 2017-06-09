@@ -10,8 +10,6 @@ namespace _2014102905_PER.Repositories
     public class UnityOfWork : IUnityOfWork
     {
         private readonly TransporteDbContext _Context;
-        private static UnityOfWork _Instance;
-        private static readonly object _Lock = new object();
 
         public IAdministrativoRepository Administrativos { get; private set; }
         public IBusRepository Buses { get; private set; }
@@ -29,7 +27,7 @@ namespace _2014102905_PER.Repositories
         public ITripulacionRepository Tripulacion { get; private set; }
         public IVentaRepository Ventas { get; private set; }
 
-        private UnityOfWork()
+        public UnityOfWork()
         {
             _Context = new TransporteDbContext();
 
@@ -51,46 +49,6 @@ namespace _2014102905_PER.Repositories
 
         }
 
-        public static UnityOfWork Instance
-        {
-            get
-            {
-                lock (_Lock)
-                {
-                    if (_Instance == null)
-                        _Instance = new UnityOfWork();
-                }
-
-                return _Instance;
-            }
-        }
-
-        IClienteRepository IUnityOfWork.Clientes => throw new NotImplementedException();
-
-        IEmpleadoRepository IUnityOfWork.Empleados => throw new NotImplementedException();
-
-        IEncomiendaRepository IUnityOfWork.Encomiendas => throw new NotImplementedException();
-
-        ILugarViajeRepository IUnityOfWork.LugarViajes => throw new NotImplementedException();
-
-        IServicioRepository IUnityOfWork.Servicios => throw new NotImplementedException();
-
-        ITipoComprobanteRepository IUnityOfWork.TipoComprobantes => throw new NotImplementedException();
-
-        ITipoLugarRepository IUnityOfWork.TipoLugares => throw new NotImplementedException();
-
-        ITipoPagoRepository IUnityOfWork.TipoPagos => throw new NotImplementedException();
-
-        ITipoTripulacionRepository IUnityOfWork.TipoTripulacion => throw new NotImplementedException();
-
-        ITipoViajeRepository IUnityOfWork.TipoViajes => throw new NotImplementedException();
-
-        ITransporteRepository IUnityOfWork.Transportes => throw new NotImplementedException();
-
-        ITripulacionRepository IUnityOfWork.Tripulacion => throw new NotImplementedException();
-
-        IVentaRepository IUnityOfWork.Ventas => throw new NotImplementedException();
-
         public void Dispose()
         {
             _Context.Dispose();
@@ -99,6 +57,11 @@ namespace _2014102905_PER.Repositories
         public int SaveChanges()
         {
             return _Context.SaveChanges();
+        }
+
+        public void StateModified(object Entity)
+        {
+            _Context.Entry(Entity).State = System.Data.Entity.EntityState.Modified;
         }
     }
 }

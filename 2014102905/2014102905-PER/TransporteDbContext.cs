@@ -1,4 +1,5 @@
 ﻿using _2014102905_ENT.Entities;
+using _2014102905_PER.EntityTypeConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _2014102905_PER
 {
-    public class TransporteDbContext: DbContext
+    public class TransporteDbContext : DbContext
     {
         public DbSet<Bus> Buses { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
@@ -21,5 +22,32 @@ namespace _2014102905_PER
         public DbSet<TipoTripulacion> TipoTripulaciones { get; set; }
         public DbSet<TipoViaje> TipoViajes { get; set; }
         public DbSet<Venta> Ventas { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new BusConfiguration());
+            modelBuilder.Configurations.Add(new ClienteConfiguration());
+            modelBuilder.Configurations.Add(new EmpleadoConfiguration());
+            modelBuilder.Configurations.Add(new LugarViajeConfiguration());
+            modelBuilder.Configurations.Add(new ServicioConfiguration());
+            modelBuilder.Configurations.Add(new TipoComprobanteConfiguration());
+            modelBuilder.Configurations.Add(new TipoLugarConfiguration());
+            modelBuilder.Configurations.Add(new TipoPagoConfiguration());
+            modelBuilder.Configurations.Add(new TipoTripulacionConfiguration());
+            modelBuilder.Configurations.Add(new TipoViajeConfiguration());
+            modelBuilder.Configurations.Add(new VentaConfiguration());
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+        public TransporteDbContext()
+            : base("TransporteDb")
+        {
+            Configuration.ProxyCreationEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
+        }
+
+        public System.Data.Entity.DbSet<_2014102905_ENT.Entities.Administrativo> Empleadoes { get; set; }
     }
 }
+

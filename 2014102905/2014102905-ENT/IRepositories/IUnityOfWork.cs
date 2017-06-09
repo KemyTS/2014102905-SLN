@@ -23,7 +23,9 @@ namespace _2014102905_ENT.IRepositories
         ITransporteRepository Transportes { get; }
         ITripulacionRepository Tripulacion { get; }
         IVentaRepository Ventas { get; }
+        
 
         int SaveChanges();
+        void StateModified(object entity);
     }
 }

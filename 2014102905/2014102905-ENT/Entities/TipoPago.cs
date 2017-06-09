@@ -11,8 +11,13 @@ namespace _2014102905_ENT.Entities
         public int TipoPagoId { get; set; }
         public string MetodoPago { get; set; }
 
-        public int VentaId { get; set; }
-        public Venta Venta { get; set; }
+        public virtual int VentaId { get; set; }
+        public virtual Venta Venta { get; set; }
+
+        public TipoPago()
+        {
+
+        }
 
     }
 }

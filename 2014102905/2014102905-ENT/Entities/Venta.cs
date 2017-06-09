@@ -9,13 +9,14 @@ namespace _2014102905_ENT.Entities
     public class Venta
     {
         public int VentaId { get; set; }
+        public string Descripcion { get; set; }
         public DateTime Fecha { get; set; }
 
-        public ICollection<Administrativo> Administrativo { get; set; }
-        public ICollection<Cliente> Cliente { get; set; }
-        public ICollection<Servicio> Servicio { get; set; }
-        public ICollection<TipoPago> TipoPago { get; set; }
-        public ICollection<TipoComprobante> TipoComprobante { get; set; }
+        public virtual ICollection<Administrativo> Administrativo { get; set; }
+        public virtual ICollection<Cliente> Cliente { get; set; }
+        public virtual ICollection<Servicio> Servicio { get; set; }
+        public virtual ICollection<TipoPago> TipoPago { get; set; }
+        public virtual ICollection<TipoComprobante> TipoComprobante { get; set; }
 
         public Venta()
         {
@@ -25,5 +26,6 @@ namespace _2014102905_ENT.Entities
             TipoPago = new List<TipoPago>();
             TipoComprobante = new List<TipoComprobante>();
         }
+
     }
 }

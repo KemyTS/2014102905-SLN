@@ -1,6 +1,7 @@
 ﻿using _2014102905_ENT.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,13 @@ namespace _2014102905_PER.EntityTypeConfiguration
             //Table Configurations
             ToTable("Empleados");
             HasKey(c => c.EmpleadoId);
+            Property(c => c.EmpleadoId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(c => c.Nombre).IsRequired().HasMaxLength(50);
             Property(c => c.Apellidos).IsRequired().HasMaxLength(250);
             Property(c => c.DNI).IsRequired().HasMaxLength(8);
 
             //Relationships configurations
+
             Map<Administrativo>(m => m.Requires("Discriminator").HasValue("Administrativo"));
             Map<Tripulacion>(m => m.Requires("Discriminator").HasValue("Tripulacion"));
         }
