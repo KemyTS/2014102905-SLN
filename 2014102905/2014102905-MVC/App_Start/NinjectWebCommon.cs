@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(_2014102905_MVC.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(_2014102905_MVC.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(_2014118110_MVC.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(_2014118110_MVC.App_Start.NinjectWebCommon), "Stop")]
 
-namespace _2014102905_MVC.App_Start
+namespace _2014118110_MVC.App_Start
 {
     using System;
     using System.Web;
@@ -10,21 +10,24 @@ namespace _2014102905_MVC.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using _2014102905_ENT.IRepositories;
+    using _2014102905_PER.Repositories;
+    using _2014102905_PER;
 
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -32,7 +35,7 @@ namespace _2014102905_MVC.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -61,6 +64,25 @@ namespace _2014102905_MVC.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-        }        
+            kernel.Bind<IUnityOfWork>().To<UnityOfWork>();
+
+            kernel.Bind<TransporteDbContext>().To<TransporteDbContext>();
+
+            kernel.Bind<IAdministrativoRepository>().To<AdministrativoRepository>();
+            kernel.Bind<IBusRepository>().To<BusRepository>();
+            kernel.Bind<IClienteRepository>().To<ClienteRepository>();
+            kernel.Bind<IEmpleadoRepository>().To<EmpleadoRepository>();
+            kernel.Bind<IEncomiendaRepository>().To<EncomiendaRepository>();
+            kernel.Bind<ILugarViajeRepository>().To<LugarViajeRepository>();
+            kernel.Bind<IServicioRepository>().To<ServicioRepository>();
+            kernel.Bind<ITipoComprobanteRepository>().To<TipoComprobanteRepository>();
+            kernel.Bind<ITipoLugarRepository>().To<TipoLugarRepository>();
+            kernel.Bind<ITipoPagoRepository>().To<TipoPagoRepository>();
+            kernel.Bind<ITipoTripulacionRepository>().To<TipoTripulacionRepository>();
+            kernel.Bind<ITipoViajeRepository>().To<TipoViajeRepository>();
+            kernel.Bind<ITransporteRepository>().To<TransporteRepository>();
+            kernel.Bind<ITripulacionRepository>().To<TripulacionRepository>();
+            kernel.Bind<IVentaRepository>().To<VentaRepository>();
+        }
     }
 }
